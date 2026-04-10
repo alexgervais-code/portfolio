@@ -60,7 +60,7 @@ export const col1Projects: Project[] = [
     imageSrc: "/images/projects/reminder_liner_card_image.png",
     responsiveImageSrc: "/images/projects/reminder_liner_tall.png",
     responsiveImageAspectRatio: "379/516",
-    imageAspectRatio: "379/275",
+    imageAspectRatio: "379/245",
   },
 ];
 
@@ -84,7 +84,7 @@ export const col2Projects: Project[] = [
     imageSrc: "/images/projects/ontrack_ivf_card_image.png",
     logoSrc: "/images/logos/university_of_michigan_logo_for_ontrack_ivf_card.png",
     logoLabel: "University of Michigan",
-    imageAspectRatio: "379/187",
+    imageAspectRatio: "379/191",
   },
 ];
 

@@ -12,6 +12,9 @@
 
 @theme inline {
   --font-sans: var(--font-figtree);
+}
+
+@theme {
   --breakpoint-sm: 640px;
   --breakpoint-desktop: 960px;
 }
