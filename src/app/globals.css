@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --portfolio-bg: #f7faff;
+  --portfolio-primary: #0057f9;
+  --portfolio-accent: #6492ff;
+  --portfolio-link: #346bed;
+  --portfolio-card-border: #c8dbff;
+  --portfolio-card-image-bg: #edf4ff;
+  --portfolio-card-text-bg: #fdfeff;
+}
+
+@theme inline {
+  --font-sans: var(--font-figtree);
+}
+
+@keyframes wave-flow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 85px 0;
+  }
+}
+
+.name-hover:hover .wave-line {
+  animation: wave-flow 3s linear infinite;
+}
+
+@keyframes toast-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 4px) scale(0.5);
+    filter: blur(3px);
+  }
+  40% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -10px) scale(1.08);
+    filter: blur(0px);
+  }
+  70% {
+    transform: translate(-50%, -7px) scale(0.97);
+    filter: blur(0px);
+  }
+  85% {
+    transform: translate(-50%, -9px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -8px) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes toast-fade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -8px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -2px) scale(0.8);
+  }
+}
+
+@keyframes gordon-rage {
+  0%, 100% { transform: translate(10px, -2px) scale(2.5) rotate(0deg); }
+  10% { transform: translate(8.5px, -2px) scale(2.5) rotate(-2deg); }
+  20% { transform: translate(11.5px, -2px) scale(2.5) rotate(2deg); }
+  30% { transform: translate(9px, -1.5px) scale(2.5) rotate(-1deg); }
+  40% { transform: translate(11px, -2.5px) scale(2.5) rotate(1deg); }
+  50% { transform: translate(8.5px, -2px) scale(2.5) rotate(-2deg); }
+  60% { transform: translate(11.5px, -1.5px) scale(2.5) rotate(2deg); }
+  70% { transform: translate(9px, -2px) scale(2.5) rotate(-1deg); }
+  80% { transform: translate(11px, -2.5px) scale(2.5) rotate(1deg); }
+  90% { transform: translate(8.5px, -2px) scale(2.5) rotate(-2deg); }
+}
+
+.gordon-line:hover .gordon-img {
+  animation: gordon-rage 0.15s ease-in-out infinite;
+}
+
+body {
+  background-color: var(--portfolio-bg);
+  color: var(--portfolio-primary);
+}
