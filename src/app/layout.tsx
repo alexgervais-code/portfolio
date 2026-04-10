@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 import { Agentation } from "agentation";
 import "./globals.css";
@@ -9,6 +9,11 @@ const figtree = Figtree({
   weight: ["400", "600", "700"],
   style: ["normal", "italic"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Alex Gervais — Product Designer",

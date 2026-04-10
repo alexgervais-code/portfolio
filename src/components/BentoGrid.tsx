@@ -42,31 +42,31 @@ export default function BentoGrid() {
   return (
     <section>
       {/* Desktop: 3-column layout */}
-      <div className="hidden desktop:grid grid-cols-3 gap-x-8 items-start">
-        <div className="col-span-2 flex flex-col gap-8">
-          <HeroText />
-          <div className="grid grid-cols-2 gap-x-8 items-start">
-            <div className="flex flex-col gap-8">
-              {col1Projects.map((project) => (
-                <PortfolioCard key={project.id} project={project} />
-              ))}
-            </div>
-            <div className="flex flex-col gap-8">
-              {col2Projects.map((project) => (
-                <PortfolioCard key={project.id} project={project} />
-              ))}
+      <div className="hidden desktop:grid grid-cols-[357px_357px_357px] gap-x-8 items-start">
+          <div className="col-span-2 flex flex-col gap-8">
+            <HeroText />
+            <div className="grid grid-cols-2 gap-x-8 items-start">
+              <div className="flex flex-col gap-8">
+                {col1Projects.map((project) => (
+                  <PortfolioCard key={project.id} project={project} />
+                ))}
+              </div>
+              <div className="flex flex-col gap-8">
+                {col2Projects.map((project) => (
+                  <PortfolioCard key={project.id} project={project} />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-8">
-          <PortfolioCard project={headerCard} />
-          {col3Projects.map((project) => (
-            <PortfolioCard key={project.id} project={project} />
-          ))}
-          <div className="w-[calc(200%+32px)] -ml-[calc(100%+32px)]">
-            <AboutMe />
+          <div className="flex flex-col gap-8">
+            <PortfolioCard project={headerCard} />
+            {col3Projects.map((project) => (
+              <PortfolioCard key={project.id} project={project} />
+            ))}
+            <div className="w-[calc(200%+32px)] -ml-[calc(100%+32px)]">
+              <AboutMe />
+            </div>
           </div>
-        </div>
       </div>
 
       {/* Tablet: 2-column layout */}
