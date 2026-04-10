@@ -15,9 +15,10 @@ const socialLinks = [
     icon: "/images/icons/x_logo_top_right.svg",
   },
   {
-    href: "/cv.pdf",
+    href: "/resume/Resume.pdf",
     label: "CV",
     icon: "/images/icons/cv_icon_for_top_nav_third_position.svg",
+    download: true,
   },
   {
     href: "mailto:alexgervais.ui@gmail.com",
@@ -80,7 +81,7 @@ export default function Header() {
               className="object-cover"
             />
           </div>
-          <div className="name-hover flex flex-col gap-0.5 cursor-pointer">
+          <div className="flex flex-col gap-0.5">
             <span className="font-semibold text-[#0057f9] text-base tracking-[-0.48px] leading-none">
               Alex Gervais
             </span>
@@ -101,6 +102,7 @@ export default function Header() {
               key={link.label}
               href={link.href}
               aria-label={link.label}
+              download={"download" in link && link.download ? "" : undefined}
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={
                 link.href.startsWith("http")

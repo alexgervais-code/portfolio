@@ -8,6 +8,9 @@ export interface Project {
   logoSecondarySrc?: string;
   logoSecondaryLabel?: string;
   logoHeight?: number;
+  logoPill?: boolean;
+  responsiveImageSrc?: string;
+  responsiveImageAspectRatio?: string;
   /** CSS aspect-ratio value for the image area, e.g. "379/343" */
   imageAspectRatio: string;
 }
@@ -33,6 +36,7 @@ export const col1Projects: Project[] = [
     logoSrc: "/images/logos/hubspot_logo_for_agentic_workflows_card.png",
     logoLabel: "HubSpot",
     logoHeight: 12,
+    logoPill: true,
     imageAspectRatio: "379/343",
   },
   {
@@ -54,7 +58,9 @@ export const col1Projects: Project[] = [
     description:
       "Wearable device for students that teaches good habits and helps them pack their bag",
     imageSrc: "/images/projects/reminder_liner_card_image.png",
-    imageAspectRatio: "379/245",
+    responsiveImageSrc: "/images/projects/reminder_liner_tall.png",
+    responsiveImageAspectRatio: "379/516",
+    imageAspectRatio: "379/275",
   },
 ];
 
@@ -67,6 +73,7 @@ export const col2Projects: Project[] = [
     imageSrc: "/images/projects/AI_social_publishing_tools_card_image.png",
     logoSrc: "/images/logos/huffpost_logo_for_ai_social_posts_card.png",
     logoLabel: "HuffPost",
+    logoPill: true,
     imageAspectRatio: "379/322",
   },
   {
@@ -77,7 +84,7 @@ export const col2Projects: Project[] = [
     imageSrc: "/images/projects/ontrack_ivf_card_image.png",
     logoSrc: "/images/logos/university_of_michigan_logo_for_ontrack_ivf_card.png",
     logoLabel: "University of Michigan",
-    imageAspectRatio: "379/193",
+    imageAspectRatio: "379/187",
   },
 ];
 

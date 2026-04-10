@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useRef } from "react";
 
-export default function AboutMe() {
+export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
   const [toastPhase, setToastPhase] = useState<"hidden" | "in" | "out">("hidden");
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
@@ -19,26 +19,26 @@ export default function AboutMe() {
   }
 
   return (
-    <div className="bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden p-[42px]">
-      <div className="grid grid-cols-[55%_45%] gap-8">
+    <div className={`bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden ${mobile ? 'p-[30px]' : 'p-[42px]'}`}>
+      <div className={mobile ? "flex flex-col gap-6" : "grid grid-cols-[55%_45%] gap-8"}>
         {/* Bio */}
         <div className="flex flex-col gap-[18px]">
-          <h2 className="font-semibold text-[#0057f9] text-lg leading-[1.494]">
+          <h2 className="font-semibold text-[#0057f9] text-lg leading-[1.494] max-sm:text-xl">
             About Me 👋
           </h2>
-          <p className="text-[#346bed] text-[15px] leading-[1.401]">
+          <p className="text-[#346bed] text-[15px] leading-[1.401] max-sm:text-[16px]">
             I&apos;ve been a product designer for ~10 years, and have experience
             designing for <em>healthcare</em>, <em>media</em>,{" "}
             <em>wearables</em>, and <em>SaaS</em>. I studied <em>design</em>{" "}
             and <em>full stack web development</em>, was a <em>founder</em> in
             two companies, and briefly taught programming at a college.
           </p>
-          <p className="text-[#346bed] text-[15px] leading-[1.401]">
+          <p className="text-[#346bed] text-[15px] leading-[1.401] max-sm:text-[16px]">
             I think the best way to do great design is by being obsessive about
             the details, being kind, and being open to ideas from anyone.
           </p>
           <div className="flex items-baseline gap-3">
-            <p className="text-[#346bed] text-[15px] leading-[1.494] font-semibold">
+            <p className="text-[#346bed] text-[15px] leading-[1.494] font-semibold max-sm:text-[16px]">
               Reach out →{" "}
               <span className="font-normal">alexgervais.ui@gmail.com</span>
             </p>
@@ -65,7 +65,7 @@ export default function AboutMe() {
                   style={{
                     animation:
                       toastPhase === "in"
-                        ? "toast-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards"
+                        ? "toast-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards"
                         : "toast-fade 0.25s ease-in forwards",
                   }}
                 >
@@ -77,12 +77,12 @@ export default function AboutMe() {
         </div>
 
         {/* Interests */}
-        <div className="pt-[45px]">
-          <h3 className="font-semibold text-[#346bed] text-[15px] leading-[1.494] mb-3">
+        <div className={mobile ? "" : "pt-[45px]"}>
+          <h3 className="font-semibold text-[#346bed] text-[15px] leading-[1.494] mb-3 max-sm:text-[16px]">
             Some things I love
           </h3>
           <ul className="flex flex-col gap-1">
-            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494]">
+            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494] max-sm:text-[16px]">
               Books (
               <a
                 href="https://www.goodreads.com/"
@@ -102,7 +102,7 @@ export default function AboutMe() {
               </a>
               ) 📚
             </li>
-            <li className="gordon-line list-disc ml-5 text-[#346bed] text-sm leading-[1.494] cursor-default">
+            <li className="gordon-line list-disc ml-5 text-[#346bed] text-sm leading-[1.494] max-sm:text-[16px] cursor-default">
               <span className="inline-flex items-center gap-1">
                 <span className="border-b border-dashed border-[#9ab8ff] pb-0 leading-tight">Cooking Competition Shows</span>
                 <Image
@@ -114,13 +114,13 @@ export default function AboutMe() {
                 />
               </span>
             </li>
-            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494]">
+            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494] max-sm:text-[16px]">
               Film 🎥
             </li>
-            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494]">
+            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494] max-sm:text-[16px]">
               Sushi 🍣
             </li>
-            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494]">
+            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494] max-sm:text-[16px]">
               <span className="inline-flex items-center gap-1">
                 One Piece
                 <Image
@@ -132,7 +132,7 @@ export default function AboutMe() {
                 />
               </span>
             </li>
-            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494]">
+            <li className="list-disc ml-5 text-[#346bed] text-sm leading-[1.494] max-sm:text-[16px]">
               Gaming 🕹️
             </li>
           </ul>

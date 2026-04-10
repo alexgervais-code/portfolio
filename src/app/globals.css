@@ -12,6 +12,8 @@
 
 @theme inline {
   --font-sans: var(--font-figtree);
+  --breakpoint-sm: 640px;
+  --breakpoint-desktop: 960px;
 }
 
 @keyframes wave-flow {
@@ -23,31 +25,21 @@
   }
 }
 
-.name-hover:hover .wave-line {
-  animation: wave-flow 3s linear infinite;
+.wave-line {
+  animation: wave-flow 7s linear infinite;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
 
 @keyframes toast-pop {
   0% {
     opacity: 0;
-    transform: translate(-50%, 4px) scale(0.5);
+    transform: translate(-50%, 4px) scale(0.92);
     filter: blur(3px);
-  }
-  40% {
-    opacity: 1;
-    filter: blur(1px);
   }
   50% {
     opacity: 1;
-    transform: translate(-50%, -10px) scale(1.08);
     filter: blur(0px);
-  }
-  70% {
-    transform: translate(-50%, -7px) scale(0.97);
-    filter: blur(0px);
-  }
-  85% {
-    transform: translate(-50%, -9px) scale(1.02);
   }
   100% {
     opacity: 1;
