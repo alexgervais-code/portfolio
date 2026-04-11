@@ -84,9 +84,7 @@ export default function PortfolioCard({
   } = project;
 
   const [hovered, setHovered] = useState(false);
-  const [tapped, setTapped] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
-  const tapTimeout = useRef<ReturnType<typeof setTimeout>>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (cursorRef.current) {
@@ -103,13 +101,6 @@ export default function PortfolioCard({
     });
   }, []);
 
-  const handleTap = useCallback(() => {
-    if (href) return;
-    if (tapTimeout.current) clearTimeout(tapTimeout.current);
-    setTapped(true);
-    tapTimeout.current = setTimeout(() => setTapped(false), 2500);
-  }, [href]);
-
   const activeImageSrc =
     useResponsiveImage && responsiveImageSrc ? responsiveImageSrc : imageSrc;
   const activeAspectRatio =
@@ -119,12 +110,11 @@ export default function PortfolioCard({
 
   const card = (
     <div
-      className="bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col relative"
+      className="bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col"
       style={{ cursor: "none" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
-      onClick={handleTap}
     >
       {/* Image area */}
       <div
@@ -176,16 +166,6 @@ export default function PortfolioCard({
         </p>
       </div>
 
-      {/* Mobile tap pill — shown inside card, centered */}
-      {!href && (
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${tapped ? "tap-pill-visible" : "opacity-0 pointer-events-none"}`}
-        >
-          <div className={tapped ? "tap-pill-spring" : ""}>
-            <ComingSoonPill />
-          </div>
-        </div>
-      )}
     </div>
   );
 
