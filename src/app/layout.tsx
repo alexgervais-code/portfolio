@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     description:
       "Product designer and maker that brings ideas to life through craft and play.",
     type: "website",
+    images: [
+      {
+        url: "/images/projects/share_image.png",
+      },
+    ],
   },
   other: {
     "theme-color": "#f7faff",
