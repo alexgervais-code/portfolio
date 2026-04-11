@@ -12,11 +12,8 @@
 
 @theme inline {
   --font-sans: var(--font-figtree);
-}
-
-@theme {
-  --breakpoint-sm: 640px;
-  --breakpoint-desktop: 960px;
+  --breakpoint-sm: 40rem;
+  --breakpoint-desktop: 60rem;
 }
 
 @keyframes wave-flow {
