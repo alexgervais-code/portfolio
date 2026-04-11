@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Project } from "@/lib/projects";
 
 interface PortfolioCardProps {
@@ -20,13 +21,14 @@ export default function PortfolioCard({ project, useResponsiveImage }: Portfolio
     responsiveImageSrc,
     responsiveImageAspectRatio,
     imageAspectRatio,
+    href,
   } = project;
 
   const activeImageSrc = useResponsiveImage && responsiveImageSrc ? responsiveImageSrc : imageSrc;
   const activeAspectRatio = useResponsiveImage && responsiveImageAspectRatio ? responsiveImageAspectRatio : imageAspectRatio;
 
-  return (
-    <div className="bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col">
+  const card = (
+    <div className={`bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col${href ? ' transition-shadow hover:shadow-[0_2px_12px_rgba(0,87,249,0.08)]' : ''}`}>
       {/* Image area */}
       <div
         className="relative w-full bg-[#edf4ff] overflow-hidden"
@@ -69,4 +71,10 @@ export default function PortfolioCard({ project, useResponsiveImage }: Portfolio
       </div>
     </div>
   );
+
+  if (href) {
+    return <Link href={href}>{card}</Link>;
+  }
+
+  return card;
 }

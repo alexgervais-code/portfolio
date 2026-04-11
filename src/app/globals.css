@@ -92,6 +92,34 @@ body {
   .main-container { padding: 0; width: 1135px; }
 }
 
+/* Case study container */
+.case-study-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+@media (min-width: 640px) and (max-width: 959.9px) {
+  .case-study-container { padding: 0; width: 789px; }
+}
+
+@media (min-width: 960px) {
+  .case-study-container { padding: 0; max-width: 1200px; width: 100%; }
+}
+
+/* Case study layout breakpoints */
+.case-layout-desktop { display: none; }
+.case-layout-tablet { display: none; }
+.case-layout-mobile { display: flex; }
+
+@media (min-width: 640px) and (max-width: 959.9px) {
+  .case-layout-desktop { display: none; }
+  .case-layout-tablet { display: flex; }
+  .case-layout-mobile { display: none; }
+}
+
+@media (min-width: 960px) {
+  .case-layout-desktop { display: flex; }
+  .case-layout-tablet { display: none; }
+  .case-layout-mobile { display: none; }
+}
+
 /* Layout breakpoints — raw media queries to guarantee correct behavior */
 .layout-desktop { display: none; }
 .layout-tablet { display: none; }

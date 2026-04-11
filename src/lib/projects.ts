@@ -13,6 +13,8 @@ export interface Project {
   responsiveImageAspectRatio?: string;
   /** CSS aspect-ratio value for the image area, e.g. "379/343" */
   imageAspectRatio: string;
+  /** Link to case study page */
+  href?: string;
 }
 
 // The BuzzFeed AI Games card lives in the header (col 3, top)
@@ -75,6 +77,7 @@ export const col2Projects: Project[] = [
     logoLabel: "HuffPost",
     logoPill: true,
     imageAspectRatio: "379/322",
+    href: "/projects/ai-social",
   },
   {
     id: "ontrack-ivf",
