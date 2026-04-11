@@ -11,7 +11,7 @@ import {
 function HeroText() {
   return (
     <div className="mb-[22px] max-sm:mb-[58px]">
-      <h1 className="font-bold text-[#0057f9] text-[30px] sm:text-[28px] leading-[1.35] tracking-[-0.01em] mb-4 max-sm:max-w-[90%]">
+      <h1 className="font-semibold text-[#0057f9] text-[31px] sm:text-[31px] leading-[1.2] tracking-[-0.01em] mb-4 max-sm:max-w-[90%]">
         Product designer and maker that brings ideas to life through craft
         and play
       </h1>

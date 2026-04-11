@@ -93,7 +93,7 @@ export default function AISocialPage() {
 
       {/* Title & description */}
       <div className="mb-[82px] max-sm:mb-[62px]">
-        <h1 className="font-bold text-[#0057f9] text-[28px] leading-[1.35] tracking-[-0.28px] max-w-[359px] max-sm:max-w-[282px]">
+        <h1 className="font-semibold text-[#0057f9] text-[31px] leading-[1.2] tracking-[-0.28px] max-w-[359px] max-sm:max-w-[282px]">
           AI Social Publishing Tools
         </h1>
         <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
