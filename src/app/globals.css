@@ -80,3 +80,31 @@ body {
   background-color: var(--portfolio-bg);
   color: var(--portfolio-primary);
 }
+
+/* Main container width at each breakpoint */
+.main-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+@media (min-width: 640px) and (max-width: 959.9px) {
+  .main-container { padding: 0; width: 712px; }
+}
+
+@media (min-width: 960px) {
+  .main-container { padding: 0; width: 1135px; }
+}
+
+/* Layout breakpoints — raw media queries to guarantee correct behavior */
+.layout-desktop { display: none; }
+.layout-tablet { display: none; }
+.layout-mobile { display: block; }
+
+@media (min-width: 640px) and (max-width: 959.9px) {
+  .layout-desktop { display: none; }
+  .layout-tablet { display: flex; }
+  .layout-mobile { display: none; }
+}
+
+@media (min-width: 960px) {
+  .layout-desktop { display: grid; }
+  .layout-tablet { display: none; }
+  .layout-mobile { display: none; }
+}

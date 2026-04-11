@@ -42,7 +42,7 @@ export default function BentoGrid() {
   return (
     <section>
       {/* Desktop: 3-column layout */}
-      <div className="hidden desktop:grid grid-cols-[357px_357px_357px] gap-x-8 items-start">
+      <div className="layout-desktop grid-cols-[357px_357px_357px] gap-x-8 items-start">
           <div className="col-span-2 flex flex-col gap-8">
             <HeroText />
             <div className="grid grid-cols-2 gap-x-8 items-start">
@@ -70,7 +70,7 @@ export default function BentoGrid() {
       </div>
 
       {/* Tablet: 2-column layout */}
-      <div className="hidden sm:max-desktop:flex flex-col items-center">
+      <div className="layout-tablet flex-col items-center">
         <div className="w-[712px]">
           <HeroText />
         </div>
@@ -93,7 +93,7 @@ export default function BentoGrid() {
       </div>
 
       {/* Mobile: single-column layout */}
-      <div className="sm:hidden">
+      <div className="layout-mobile">
         <HeroText />
         <div className="flex flex-col gap-6">
           <PortfolioCard project={col1Projects[0]} />
