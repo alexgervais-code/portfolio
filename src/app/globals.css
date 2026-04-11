@@ -76,6 +76,23 @@
   animation: gordon-rage 0.15s ease-in-out infinite;
 }
 
+@keyframes ellipsis-fade {
+  0%, 20% { opacity: 0; }
+  40%, 100% { opacity: 1; }
+}
+
+.ellipsis-dot {
+  animation: ellipsis-fade 1.4s infinite;
+}
+
+.ellipsis-dot-2 {
+  animation-delay: 0.2s;
+}
+
+.ellipsis-dot-3 {
+  animation-delay: 0.4s;
+}
+
 body {
   background-color: var(--portfolio-bg);
   color: var(--portfolio-primary);

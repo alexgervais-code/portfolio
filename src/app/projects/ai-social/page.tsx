@@ -386,7 +386,7 @@ export default function AISocialPage() {
               src="/images/projects/ai_social_tools/image_2.png"
               alt="Mobile social feed view"
               fill
-              className="object-cover"
+              className="object-contain"
               sizes="100vw"
             />
           </div>
@@ -396,7 +396,7 @@ export default function AISocialPage() {
           <div className="relative w-full" style={{ aspectRatio: "346/231" }}>
             <Image
               src="/images/projects/ai_social_tools/image_3_mobile_breakpoint.png"
-              alt="Automations workflow"
+              alt="Social bots automations"
               fill
               className="object-cover"
               sizes="100vw"
