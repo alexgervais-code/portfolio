@@ -103,7 +103,7 @@ export default function AISocialPage() {
             new pieces of content per day. I led the design these of these tools,
             and spearheaded an effort to make our automation system easier to
             understand and configure. I redesigned our core tool and created a new
-            tool for driving Instagram and TikTok referral.
+            tool for driving Instagram and TikTok referrals.
           </p>
           <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[#6b9af2] text-[14px] leading-[1.35] tracking-[-0.14px]">
             <span>BuzzFeed</span>
