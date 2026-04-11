@@ -98,11 +98,12 @@ export default function AISocialPage() {
         </h1>
         <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
           <p className="text-[#0057f9] text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px]">
-            Spearheaded the development of an agentic workflow builder, resulting
-            in a 40% increase in team efficiency. Leveraged HubSpot to automate
-            key processes, enhancing overall productivity and streamlining
-            project management. Introduced innovative strategies that
-            significantly improved workflow optimization.
+            BuzzFeed relies on a suite of powerful social publishing tools powered
+            by machine learning that help automate the distribution of over 1200+
+            new pieces of content per day. I led the design these of these tools,
+            and spearheaded an effort to make our automation system easier to
+            understand and configure. I redesigned our core tool and created a new
+            tool for driving Instagram and TikTok referral.
           </p>
           <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[#6b9af2] text-[14px] leading-[1.35] tracking-[-0.14px]">
             <span>BuzzFeed</span>

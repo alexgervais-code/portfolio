@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
@@ -85,44 +85,22 @@ export default function PortfolioCard({
 
   const [hovered, setHovered] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number>(0);
-  const targetPos = useRef({ x: 0, y: 0 });
-  const currentPos = useRef({ x: 0, y: 0 });
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    targetPos.current = { x: e.clientX, y: e.clientY };
+    if (cursorRef.current) {
+      cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+    }
   }, []);
 
   const handleMouseEnter = useCallback((e: React.MouseEvent) => {
-    // Snap to initial position so it doesn't animate in from (0,0)
-    targetPos.current = { x: e.clientX, y: e.clientY };
-    currentPos.current = { x: e.clientX, y: e.clientY };
     setHovered(true);
-  }, []);
-
-  useEffect(() => {
-    if (!hovered) {
-      cancelAnimationFrame(rafRef.current);
-      return;
-    }
-
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-
-    const animate = () => {
-      const ease = 0.15;
-      currentPos.current.x = lerp(currentPos.current.x, targetPos.current.x, ease);
-      currentPos.current.y = lerp(currentPos.current.y, targetPos.current.y, ease);
-
+    // RAF so the ref is mounted before we position it
+    requestAnimationFrame(() => {
       if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${currentPos.current.x}px, ${currentPos.current.y}px, 0) translate(-50%, -50%)`;
+        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
       }
-
-      rafRef.current = requestAnimationFrame(animate);
-    };
-
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [hovered]);
+    });
+  }, []);
 
   const activeImageSrc =
     useResponsiveImage && responsiveImageSrc ? responsiveImageSrc : imageSrc;
@@ -133,7 +111,7 @@ export default function PortfolioCard({
 
   const card = (
     <div
-      className={`bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col${href ? " transition-shadow hover:shadow-[0_2px_12px_rgba(0,87,249,0.08)]" : ""}`}
+      className={`bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col${""}`}
       style={{ cursor: "none" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setHovered(false)}

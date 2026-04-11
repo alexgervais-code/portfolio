@@ -77,20 +77,23 @@
 }
 
 @keyframes ellipsis-fade {
-  0%, 20% { opacity: 0; }
-  40%, 100% { opacity: 1; }
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .ellipsis-dot {
-  animation: ellipsis-fade 1.4s infinite;
+  opacity: 0;
+  animation: ellipsis-fade 1.8s infinite;
 }
 
 .ellipsis-dot-2 {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
 }
 
 .ellipsis-dot-3 {
-  animation-delay: 0.4s;
+  animation-delay: 0.6s;
 }
 
 body {
