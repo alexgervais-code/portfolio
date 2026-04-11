@@ -10,29 +10,7 @@ interface PortfolioCardProps {
   useResponsiveImage?: boolean;
 }
 
-function CustomCursor({ isClickable }: { isClickable: boolean }) {
-  if (isClickable) {
-    return (
-      <div className="w-[41px] h-[41px] rounded-full bg-white border border-[#e9e9e9] shadow-[0_6px_12.6px_rgba(0,0,0,0.1)] flex items-center justify-center pointer-events-none">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M5.833 14.167 14.167 5.833M14.167 5.833H6.667M14.167 5.833v7.5"
-            stroke="#0057f9"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-    );
-  }
-
+function ComingSoonPill() {
   return (
     <div className="h-[41px] rounded-full bg-white border border-[#e9e9e9] shadow-[0_6px_12.6px_rgba(0,0,0,0.1)] flex items-center px-[18px] gap-[6px] pointer-events-none whitespace-nowrap">
       <span className="text-[#888] text-[14px] leading-[1.44] tracking-[-0.14px]">
@@ -63,6 +41,28 @@ function CustomCursor({ isClickable }: { isClickable: boolean }) {
   );
 }
 
+function ViewCursor() {
+  return (
+    <div className="w-[41px] h-[41px] rounded-full bg-white border border-[#e9e9e9] shadow-[0_6px_12.6px_rgba(0,0,0,0.1)] flex items-center justify-center pointer-events-none">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5.833 14.167 14.167 5.833M14.167 5.833H6.667M14.167 5.833v7.5"
+          stroke="#0057f9"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
 export default function PortfolioCard({
   project,
   useResponsiveImage,
@@ -84,7 +84,9 @@ export default function PortfolioCard({
   } = project;
 
   const [hovered, setHovered] = useState(false);
+  const [tapped, setTapped] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const tapTimeout = useRef<ReturnType<typeof setTimeout>>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (cursorRef.current) {
@@ -94,13 +96,19 @@ export default function PortfolioCard({
 
   const handleMouseEnter = useCallback((e: React.MouseEvent) => {
     setHovered(true);
-    // RAF so the ref is mounted before we position it
     requestAnimationFrame(() => {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
       }
     });
   }, []);
+
+  const handleTap = useCallback(() => {
+    if (href) return;
+    if (tapTimeout.current) clearTimeout(tapTimeout.current);
+    setTapped(true);
+    tapTimeout.current = setTimeout(() => setTapped(false), 2500);
+  }, [href]);
 
   const activeImageSrc =
     useResponsiveImage && responsiveImageSrc ? responsiveImageSrc : imageSrc;
@@ -111,11 +119,12 @@ export default function PortfolioCard({
 
   const card = (
     <div
-      className={`bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col${""}`}
+      className="bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col relative"
       style={{ cursor: "none" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
+      onClick={handleTap}
     >
       {/* Image area */}
       <div
@@ -166,6 +175,17 @@ export default function PortfolioCard({
           {description}
         </p>
       </div>
+
+      {/* Mobile tap pill — shown inside card, centered */}
+      {!href && (
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${tapped ? "tap-pill-visible" : "opacity-0 pointer-events-none"}`}
+        >
+          <div className={tapped ? "tap-pill-spring" : ""}>
+            <ComingSoonPill />
+          </div>
+        </div>
+      )}
     </div>
   );
 
@@ -174,7 +194,7 @@ export default function PortfolioCard({
       ref={cursorRef}
       className="fixed top-0 left-0 z-[9999] pointer-events-none will-change-transform"
     >
-      <CustomCursor isClickable={!!href} />
+      {href ? <ViewCursor /> : <ComingSoonPill />}
     </div>
   );
 
