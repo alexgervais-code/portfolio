@@ -16,9 +16,18 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Alex Gervais — Product Designer",
+  title: "Alex Gervais Portfolio",
   description:
     "Product designer and maker that brings ideas to life through craft and play.",
+  openGraph: {
+    title: "Alex Gervais Portfolio",
+    description:
+      "Product designer and maker that brings ideas to life through craft and play.",
+    type: "website",
+  },
+  other: {
+    "theme-color": "#f7faff",
+  },
 };
 
 export default function RootLayout({
