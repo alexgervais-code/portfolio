@@ -39,7 +39,7 @@ export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
           </p>
           <div className="flex items-baseline gap-3">
             <p className="text-[var(--portfolio-link)] text-[15px] leading-[1.494] font-semibold max-sm:text-[16px]">
-              Reach out →{" "}
+              Reach Out →{" "}
               <span className="font-normal">alexgervais.ui@gmail.com</span>
             </p>
             <div className="relative self-center translate-y-[2px]">
