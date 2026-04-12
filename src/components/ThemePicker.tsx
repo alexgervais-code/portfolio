@@ -65,7 +65,7 @@ export default function ThemePicker() {
   return (
     <>
       {/* Desktop: horizontal pill */}
-      <div className="hidden min-[480px]:block">
+      <div className="hidden xs:block">
         <div className="relative h-[30px] w-[84px] rounded-full" style={{ backgroundColor: "var(--portfolio-theme-picker-bg)" }}>
           {/* Selection indicator */}
           <div
@@ -90,7 +90,7 @@ export default function ThemePicker() {
       </div>
 
       {/* Mobile: fixed bottom-left, vertical */}
-      <div className="min-[480px]:hidden fixed bottom-5 left-5 z-[100]">
+      <div className="xs:hidden fixed bottom-5 left-5 z-[100]">
         <div
           className="relative w-[44px] h-[116px] rounded-full shadow-[0_8px_20px_rgba(0,0,0,0.15)]"
           style={{ backgroundColor: "var(--portfolio-theme-picker-bg)", border: "1px solid var(--portfolio-card-border)" }}

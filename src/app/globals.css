@@ -65,6 +65,7 @@
 
 @theme inline {
   --font-sans: var(--font-figtree);
+  --breakpoint-xs: 30rem;
   --breakpoint-sm: 40rem;
   --breakpoint-desktop: 60rem;
 }
