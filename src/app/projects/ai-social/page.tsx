@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import ThemePicker from "@/components/ThemePicker";
 
 export const metadata: Metadata = {
   title: "AI Social Publishing Tools — Alex Gervais",
@@ -42,7 +43,8 @@ function CaseStudyCard({
 }) {
   return (
     <div
-      className={`bg-[#edf4ff] border border-[#c8dbff] rounded-[28px] overflow-hidden ${className}`}
+      className={`rounded-[28px] overflow-hidden transition-colors duration-300 ${className}`}
+      style={{ backgroundColor: "var(--portfolio-card-image-bg)", border: "1px solid var(--portfolio-card-border)" }}
     >
       {children}
     </div>
@@ -56,15 +58,19 @@ export default function AISocialPage() {
       <header className="pt-8 flex items-center justify-between mb-[60px] max-sm:mb-[50px]">
         <Link
           href="/"
-          className="size-[34px] rounded-full bg-white border border-[#c8dbff] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.05)] flex items-center justify-center hover:opacity-70 transition-opacity"
+          className="back-button size-[34px] rounded-full bg-white shadow-[0px_4px_10px_0px_rgba(0,0,0,0.05)] flex items-center justify-center hover:opacity-70 transition-[opacity,border-color] duration-300"
+          style={{ border: "1px solid var(--portfolio-card-border)" }}
         >
           <Image
             src="/images/icons/back_button.svg"
             alt="Back to portfolio"
             width={12}
             height={12}
+            className="back-button-icon"
           />
         </Link>
+        <div className="flex items-center gap-4">
+          <ThemePicker />
         <nav className="flex items-center gap-4">
           {socialLinks.map((link) => (
             <a
@@ -84,20 +90,21 @@ export default function AISocialPage() {
                 src={link.icon}
                 alt={link.label}
                 fill
-                className="object-contain"
+                className="object-contain theme-icon"
               />
             </a>
           ))}
         </nav>
+        </div>
       </header>
 
       {/* Title & description */}
       <div className="mb-[82px] max-sm:mb-[62px]">
-        <h1 className="font-semibold text-[#0057f9] text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-[282px]">
+        <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-[282px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
           AI Social Publishing Tools
         </h1>
         <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
-          <p className="text-[#0057f9] text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px]">
+          <p className="text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
             BuzzFeed relies on a suite of powerful social publishing tools powered
             by machine learning that help automate the distribution of over 1200+
             new pieces of content per day. I led the design these of these tools,
@@ -105,7 +112,7 @@ export default function AISocialPage() {
             understand and configure. I redesigned our core tool and created a new
             tool for driving Instagram and TikTok referrals.
           </p>
-          <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[#6b9af2] text-[14px] leading-[1.35] tracking-[-0.14px]">
+          <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
             <span>BuzzFeed</span>
             <span>2019 - 2022</span>
           </div>

@@ -13,6 +13,9 @@ export interface Project {
   responsiveImageAspectRatio?: string;
   /** CSS aspect-ratio value for the image area, e.g. "379/343" */
   imageAspectRatio: string;
+  /** Theme-specific image variants */
+  darkImageSrc?: string;
+  lightImageSrc?: string;
   /** Link to case study page */
   href?: string;
 }
@@ -23,6 +26,8 @@ export const headerCard: Project = {
   title: "BuzzFeed's AI Games And Experiences",
   description: "LLM-powered experiences for buzzfeed.com",
   imageSrc: "/images/projects/AI_games_card_image.png",
+  darkImageSrc: "/images/projects/AI_games_card_dark.png",
+  lightImageSrc: "/images/projects/AI_games_card_light.png",
   logoSrc: "/images/logos/buzzfeed_logo_for_cards.png",
   logoLabel: "BuzzFeed",
   imageAspectRatio: "379/348",
@@ -81,10 +86,12 @@ export const col2Projects: Project[] = [
   },
   {
     id: "ontrack-ivf",
-    title: "OnTrack IVF Web and Mobile App",
+    title: "OnTrack IVF Web And Mobile App",
     description:
       "Improving the patient experience and reducing treatment errors in IVF treatment",
     imageSrc: "/images/projects/ontrack_ivf_card_image.png",
+    darkImageSrc: "/images/projects/ontrack_ivf_card_image_dark.png",
+    lightImageSrc: "/images/projects/ontrack_ivf_card_image_light.png",
     logoSrc: "/images/logos/university_of_michigan_logo_for_ontrack_ivf_card.png",
     logoLabel: "University of Michigan",
     imageAspectRatio: "379/191",

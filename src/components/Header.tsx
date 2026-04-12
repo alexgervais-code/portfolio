@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState, useCallback } from "react";
+import ThemePicker from "./ThemePicker";
 
 const socialLinks = [
   {
@@ -66,27 +67,28 @@ export default function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative size-[34px] rounded-full overflow-hidden border-2 border-[#edf4ff] shrink-0 transition-transform duration-300 ease-out cursor-pointer"
+            className="avatar-border relative size-[34px] rounded-full overflow-hidden shrink-0 ease-out cursor-pointer"
             style={{
               transform: isHovering
                 ? `scale(1.6) translate(${offset.x}px, ${offset.y}px)`
                 : "scale(1) translate(0px, 0px)",
               zIndex: isHovering ? 10 : undefined,
+              transition: "transform 0.3s ease-out, border-color 0.3s ease",
             }}
           >
             <Image
               src="/images/avatar.png"
               alt="Alex Gervais"
               fill
-              className="object-cover"
+              className="object-cover scale-125"
             />
           </div>
           <div className="flex flex-col gap-0.5">
-            <span className="font-semibold text-[#0057f9] text-base tracking-[-0.48px] leading-none">
+            <span className="font-semibold text-base tracking-[-0.48px] leading-none transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
               Alex Gervais
             </span>
             <div
-              className="wave-line w-[85px] h-[4px]"
+              className="wave-line w-[85px] h-[4px] theme-icon"
               style={{
                 backgroundImage: "url('/images/header-illustration.svg')",
                 backgroundRepeat: "repeat-x",
@@ -96,6 +98,8 @@ export default function Header() {
           </div>
         </div>
 
+        <div className="flex items-center gap-4">
+          <ThemePicker />
         <nav className="flex items-center gap-4">
           {socialLinks.map((link) => (
             <a
@@ -115,11 +119,12 @@ export default function Header() {
                 src={link.icon}
                 alt={link.label}
                 fill
-                className="object-contain"
+                className="object-contain theme-icon"
               />
             </a>
           ))}
         </nav>
+        </div>
       </div>
 
     </header>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
@@ -12,10 +12,13 @@ interface PortfolioCardProps {
 
 function ComingSoonPill() {
   return (
-    <div className="h-[41px] rounded-full bg-white border border-[#e9e9e9] shadow-[0_6px_12.6px_rgba(0,0,0,0.1)] flex items-center px-[18px] gap-[6px] pointer-events-none whitespace-nowrap">
-      <span className="text-[#888] text-[14px] leading-[1.44] tracking-[-0.14px]">
+    <div
+      className="h-[41px] rounded-full shadow-[0_6px_12.6px_rgba(0,0,0,0.1)] flex items-center px-[18px] gap-[2px] pointer-events-none whitespace-nowrap hover-cursor-pill"
+      style={{ backgroundColor: "var(--hover-cursor-bg)", border: "1px solid var(--hover-cursor-border)" }}
+    >
+      <span className="text-[14px] leading-[1.44] tracking-[-0.14px]" style={{ color: "var(--portfolio-accent)" }}>
         Coming soon{" "}
-        <span className="inline-flex w-[18px]">
+        <span className="inline-flex w-[12px]">
           <span className="ellipsis-dot">.</span>
           <span className="ellipsis-dot ellipsis-dot-2">.</span>
           <span className="ellipsis-dot ellipsis-dot-3">.</span>
@@ -31,7 +34,7 @@ function ComingSoonPill() {
       >
         <path
           d="M5.833 14.167 14.167 5.833M14.167 5.833H6.667M14.167 5.833v7.5"
-          stroke="#888"
+          stroke="var(--portfolio-accent)"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -43,7 +46,10 @@ function ComingSoonPill() {
 
 function ViewCursor() {
   return (
-    <div className="w-[41px] h-[41px] rounded-full bg-white border border-[#e9e9e9] shadow-[0_6px_12.6px_rgba(0,0,0,0.1)] flex items-center justify-center pointer-events-none">
+    <div
+      className="w-[41px] h-[41px] rounded-full shadow-[0_6px_12.6px_rgba(0,0,0,0.1)] flex items-center justify-center pointer-events-none"
+      style={{ backgroundColor: "var(--hover-cursor-bg)", border: "1px solid var(--hover-cursor-border)" }}
+    >
       <svg
         width="14"
         height="14"
@@ -53,7 +59,7 @@ function ViewCursor() {
       >
         <path
           d="M5.833 14.167 14.167 5.833M14.167 5.833H6.667M14.167 5.833v7.5"
-          stroke="#0057f9"
+          stroke="var(--portfolio-primary)"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -71,6 +77,8 @@ export default function PortfolioCard({
     title,
     description,
     imageSrc,
+    darkImageSrc,
+    lightImageSrc,
     logoSrc,
     logoLabel,
     logoSecondarySrc,
@@ -82,6 +90,17 @@ export default function PortfolioCard({
     imageAspectRatio,
     href,
   } = project;
+
+  const [theme, setTheme] = useState("ocean");
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setTheme(document.documentElement.getAttribute("data-theme") || "ocean");
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    setTheme(document.documentElement.getAttribute("data-theme") || "ocean");
+    return () => observer.disconnect();
+  }, []);
 
   const [hovered, setHovered] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -101,8 +120,12 @@ export default function PortfolioCard({
     });
   }, []);
 
+  const themedImageSrc =
+    theme === "dark" && darkImageSrc ? darkImageSrc :
+    theme === "light" && lightImageSrc ? lightImageSrc :
+    imageSrc;
   const activeImageSrc =
-    useResponsiveImage && responsiveImageSrc ? responsiveImageSrc : imageSrc;
+    useResponsiveImage && responsiveImageSrc ? responsiveImageSrc : themedImageSrc;
   const activeAspectRatio =
     useResponsiveImage && responsiveImageAspectRatio
       ? responsiveImageAspectRatio
@@ -110,16 +133,16 @@ export default function PortfolioCard({
 
   const card = (
     <div
-      className="bg-[#f7faff] border border-[#c8dbff] rounded-[28px] overflow-hidden flex flex-col"
-      style={{ cursor: "none" }}
+      className="rounded-[28px] overflow-hidden flex flex-col transition-colors duration-300"
+      style={{ backgroundColor: "var(--portfolio-card-bg)", border: "1px solid var(--portfolio-card-border)", cursor: "none" } as React.CSSProperties}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
     >
       {/* Image area */}
       <div
-        className="relative w-full bg-[#edf4ff] overflow-hidden"
-        style={{ aspectRatio: activeAspectRatio }}
+        className="relative w-full overflow-hidden transition-colors duration-300"
+        style={{ backgroundColor: "var(--portfolio-card-image-bg)", aspectRatio: activeAspectRatio } as React.CSSProperties}
       >
         <Image
           src={activeImageSrc}
@@ -130,7 +153,7 @@ export default function PortfolioCard({
         />
         {logoSrc && (
           <div
-            className={`absolute top-3 left-3 bg-white border border-[#c8dbff] rounded-[60px] flex items-center justify-center ${logoSecondarySrc ? "px-[4px] h-[26px] gap-1" : logoPill ? "px-[8px] h-[26px]" : "size-[26px]"}`}
+            className={`logo-pill-border absolute top-3 left-3 bg-white rounded-[60px] flex items-center justify-center ${logoSecondarySrc ? "px-[4px] h-[26px] gap-1" : logoPill ? "px-[8px] h-[26px]" : "size-[26px]"}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -141,7 +164,7 @@ export default function PortfolioCard({
             />
             {logoSecondarySrc && (
               <>
-                <span className="text-[#0057f9] text-sm leading-none select-none">
+                <span className="logo-x text-sm leading-none select-none translate-x-[1px] -translate-y-[1px]" style={{ color: "var(--portfolio-primary)" }}>
                   ×
                 </span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -157,11 +180,11 @@ export default function PortfolioCard({
       </div>
 
       {/* Text area */}
-      <div className="px-5 pt-5 pb-[17px] flex flex-col gap-1.5">
-        <p className="font-semibold text-[#0057f9] text-base leading-5 max-sm:text-[18px]">
+      <div className="px-5 pt-5 pb-[17px] flex flex-col gap-1.5 transition-colors duration-300" style={{ backgroundColor: "var(--portfolio-card-text-bg)" } as React.CSSProperties}>
+        <p className="font-semibold text-base leading-5 max-sm:text-[18px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
           {title}
         </p>
-        <p className="text-[#6492ff] text-sm leading-[1.4] max-sm:text-[16px]">
+        <p className="text-sm leading-[1.4] max-sm:text-[16px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
           {description}
         </p>
       </div>
