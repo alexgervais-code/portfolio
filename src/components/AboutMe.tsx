@@ -93,13 +93,8 @@ export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
                 className="font-medium inline-flex items-center gap-[3px] border-b border-dashed border-[var(--portfolio-card-border)] pb-0 leading-tight"
               >
                 My Goodreads
-                <span className="relative inline-block size-[12px] shrink-0">
-                  <Image
-                    src="/images/icons/arrow_pointer_icon_for_links.svg"
-                    alt=""
-                    fill
-                    className="object-contain link-arrow-icon"
-                  />
+                <span className="inline-flex items-center justify-center size-[12px] shrink-0">
+                  <span className="link-arrow-mask" />
                 </span>
               </a>
               ) 📚

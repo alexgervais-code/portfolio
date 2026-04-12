@@ -22,15 +22,11 @@ function HeroText() {
           target="_blank"
           rel="noopener noreferrer"
           className="font-medium inline-flex items-center gap-[3px] border-b border-dashed border-[var(--portfolio-card-border)]"
+          style={{ color: "var(--portfolio-subtitle)" }}
         >
           HubSpot
-          <span className="relative inline-block size-[14px] shrink-0">
-            <Image
-              src="/images/icons/arrow_pointer_icon_for_links.svg"
-              alt=""
-              fill
-              className="object-contain theme-icon"
-            />
+          <span className="inline-flex items-center justify-center size-[14px] shrink-0">
+            <span className="link-arrow-mask" />
           </span>
         </a>
       </p>

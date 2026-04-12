@@ -17,7 +17,7 @@
   --portfolio-theme-picker-inactive: #537CC2;
   --portfolio-theme-picker-indicator: #ffffff;
   --hover-cursor-bg: #ffffff;
-  --hover-cursor-border: #e9e9e9;
+  --hover-cursor-border: #c8dbff;
   --hover-cursor-text: #888888;
 }
 
@@ -174,12 +174,13 @@ html[data-theme="dark"] .back-button-icon {
   filter: brightness(0) saturate(100%) invert(100%) !important;
 }
 
-.link-arrow-icon {
-  filter: brightness(0) saturate(100%) invert(42%);
-}
-
-html[data-theme="dark"] .link-arrow-icon {
-  filter: brightness(0) saturate(100%) invert(62%);
+.link-arrow-mask {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  -webkit-mask: url('/images/icons/arrow_pointer_icon_for_links.svg') no-repeat center / contain;
+  mask: url('/images/icons/arrow_pointer_icon_for_links.svg') no-repeat center / contain;
 }
 
 html[data-theme="light"] .theme-icon {

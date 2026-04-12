@@ -104,6 +104,17 @@ export default function PortfolioCard({
 
   const [hovered, setHovered] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const [isPhone, setIsPhone] = useState(false);
+  const [phoneToast, setPhoneToast] = useState<{ phase: "hidden" | "in" | "out"; x: number; y: number }>({ phase: "hidden", x: 0, y: 0 });
+  const phoneTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 479px)");
+    const update = () => setIsPhone(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (cursorRef.current) {
@@ -112,13 +123,29 @@ export default function PortfolioCard({
   }, []);
 
   const handleMouseEnter = useCallback((e: React.MouseEvent) => {
+    if (isPhone) return;
     setHovered(true);
     requestAnimationFrame(() => {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
       }
     });
-  }, []);
+  }, [isPhone]);
+
+  const handlePhoneTap = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isPhone || href) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + 48;
+    if (phoneTimeoutRef.current) clearTimeout(phoneTimeoutRef.current);
+    setPhoneToast({ phase: "in", x, y });
+    phoneTimeoutRef.current = setTimeout(() => {
+      setPhoneToast((p) => ({ ...p, phase: "out" }));
+      phoneTimeoutRef.current = setTimeout(() => {
+        setPhoneToast((p) => ({ ...p, phase: "hidden" }));
+      }, 400);
+    }, 2000);
+  }, [isPhone, href]);
 
   const themedImageSrc =
     theme === "dark" && darkImageSrc ? darkImageSrc :
@@ -134,10 +161,11 @@ export default function PortfolioCard({
   const card = (
     <div
       className="rounded-[28px] overflow-hidden flex flex-col transition-colors duration-300"
-      style={{ backgroundColor: "var(--portfolio-card-bg)", border: "1px solid var(--portfolio-card-border)", cursor: "none" } as React.CSSProperties}
+      style={{ backgroundColor: "var(--portfolio-card-bg)", border: "1px solid var(--portfolio-card-border)", cursor: isPhone ? "default" : "none" } as React.CSSProperties}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
+      onClick={handlePhoneTap}
     >
       {/* Image area */}
       <div
@@ -192,7 +220,7 @@ export default function PortfolioCard({
     </div>
   );
 
-  const cursor = hovered && (
+  const cursor = !isPhone && hovered && (
     <div
       ref={cursorRef}
       className="fixed top-0 left-0 z-[9999] pointer-events-none will-change-transform"
@@ -201,11 +229,28 @@ export default function PortfolioCard({
     </div>
   );
 
+  const phonePill = phoneToast.phase !== "hidden" && (
+    <div
+      className="fixed z-[9999] pointer-events-none"
+      style={{
+        left: phoneToast.x,
+        top: phoneToast.y,
+        animation:
+          phoneToast.phase === "in"
+            ? "toast-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards"
+            : "toast-fade 0.25s ease-in forwards",
+      }}
+    >
+      <ComingSoonPill />
+    </div>
+  );
+
   if (href) {
     return (
       <>
         <Link href={href}>{card}</Link>
         {cursor}
+        {phonePill}
       </>
     );
   }
@@ -214,6 +259,7 @@ export default function PortfolioCard({
     <>
       {card}
       {cursor}
+      {phonePill}
     </>
   );
 }
