@@ -135,8 +135,8 @@ export default function PortfolioCard({
   const handlePhoneTap = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!isPhone || href) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + 48;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     if (phoneTimeoutRef.current) clearTimeout(phoneTimeoutRef.current);
     setPhoneToast({ phase: "in", x, y });
     phoneTimeoutRef.current = setTimeout(() => {
@@ -231,7 +231,7 @@ export default function PortfolioCard({
 
   const phonePill = phoneToast.phase !== "hidden" && (
     <div
-      className="fixed z-[9999] pointer-events-none"
+      className="absolute z-[9999] pointer-events-none"
       style={{
         left: phoneToast.x,
         top: phoneToast.y,
@@ -250,16 +250,15 @@ export default function PortfolioCard({
       <>
         <Link href={href}>{card}</Link>
         {cursor}
-        {phonePill}
       </>
     );
   }
 
   return (
-    <>
+    <div className="relative">
       {card}
       {cursor}
       {phonePill}
-    </>
+    </div>
   );
 }
