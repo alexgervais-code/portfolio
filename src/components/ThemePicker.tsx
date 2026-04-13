@@ -52,15 +52,17 @@ const themeLabels: Record<ThemeId, string> = {
 
 const themeOrder: ThemeId[] = ["ocean", "light", "dark"];
 
+
 export default function ThemePicker() {
   const [active, setActive] = useState<ThemeId>("ocean");
 
   const activeIndex = themeOrder.indexOf(active);
 
   const switchTheme = useCallback((id: ThemeId) => {
+    if (id === active) return;
     setActive(id);
     document.documentElement.setAttribute("data-theme", id);
-  }, []);
+  }, [active]);
 
   return (
     <>
@@ -69,7 +71,7 @@ export default function ThemePicker() {
         <div className="relative h-[30px] w-[84px] rounded-full" style={{ backgroundColor: "var(--portfolio-theme-picker-bg)" }}>
           {/* Selection indicator */}
           <div
-            className="absolute top-[2px] size-[26px] rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.08)] transition-[left,background-color,border-color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+            className="absolute top-[2px] size-[26px] rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.08)] transition-[left,background-color,border-color] duration-300 ease-[cubic-bezier(0.34,1.2,0.64,1)]"
             style={{ left: 3 + activeIndex * 26, borderColor: active === "dark" ? "var(--portfolio-card-border)" : "var(--portfolio-theme-picker-border)", borderWidth: 1, borderStyle: "solid", backgroundColor: active === "dark" ? "var(--portfolio-bg)" : "var(--portfolio-theme-picker-indicator)" }}
           />
           {/* Icons */}
@@ -97,7 +99,7 @@ export default function ThemePicker() {
         >
           {/* Selection indicator */}
           <div
-            className="absolute left-[3px] size-[36px] rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.08)] transition-[top,background-color,border-color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+            className="absolute left-[3px] size-[36px] rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.08)] transition-[top,background-color,border-color] duration-300 ease-[cubic-bezier(0.34,1.2,0.64,1)]"
             style={{ top: 3 + activeIndex * 36, borderColor: active === "dark" ? "var(--portfolio-card-border)" : "var(--portfolio-theme-picker-border)", borderWidth: 1, borderStyle: "solid", backgroundColor: active === "dark" ? "var(--portfolio-bg)" : "var(--portfolio-theme-picker-indicator)" }}
           />
           {/* Icons */}

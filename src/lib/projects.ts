@@ -5,6 +5,8 @@ export interface Project {
   imageSrc: string;
   logoSrc?: string;
   logoLabel?: string;
+  logoPrefixSrc?: string;
+  logoPrefixLabel?: string;
   logoSecondarySrc?: string;
   logoSecondaryLabel?: string;
   logoHeight?: number;
@@ -78,6 +80,8 @@ export const col2Projects: Project[] = [
     description:
       "Maximizing social platform engagement with automation and machine learning",
     imageSrc: "/images/projects/AI_social_publishing_tools_card_image.png",
+    logoPrefixSrc: "/images/logos/buzzfeed_logo_for_cards.png",
+    logoPrefixLabel: "BuzzFeed",
     logoSrc: "/images/logos/huffpost_logo_for_ai_social_posts_card.png",
     logoLabel: "HuffPost",
     logoPill: true,

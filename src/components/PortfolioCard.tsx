@@ -81,6 +81,8 @@ export default function PortfolioCard({
     lightImageSrc,
     logoSrc,
     logoLabel,
+    logoPrefixSrc,
+    logoPrefixLabel,
     logoSecondarySrc,
     logoSecondaryLabel,
     logoHeight,
@@ -179,29 +181,43 @@ export default function PortfolioCard({
           className="object-cover object-top"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        {logoSrc && (
-          <div
-            className={`logo-pill-border absolute top-3 left-3 bg-white rounded-[60px] flex items-center justify-center ${logoSecondarySrc ? "px-[4px] h-[26px] gap-1" : logoPill ? "px-[8px] h-[26px]" : "size-[26px]"}`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={logoSrc}
-              alt={logoLabel ?? ""}
-              className="w-auto"
-              style={{ height: logoHeight ?? 16 }}
-            />
-            {logoSecondarySrc && (
-              <>
-                <span className="logo-x text-sm leading-none select-none translate-x-[1px] -translate-y-[1px]" style={{ color: "var(--portfolio-primary)" }}>
-                  ×
-                </span>
+        {(logoPrefixSrc || logoSrc) && (
+          <div className="absolute top-3 left-3 flex items-center gap-1">
+            {logoPrefixSrc && (
+              <div className="logo-pill-border bg-white size-[26px] rounded-full flex items-center justify-center shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={logoSecondarySrc}
-                  alt={logoSecondaryLabel ?? ""}
-                  className="h-[16px] w-auto translate-y-[1px] mr-[2px]"
+                  src={logoPrefixSrc}
+                  alt={logoPrefixLabel ?? ""}
+                  className="w-auto h-[16px]"
                 />
-              </>
+              </div>
+            )}
+            {logoSrc && (
+              <div
+                className={`logo-pill-border bg-white rounded-[60px] flex items-center justify-center ${logoSecondarySrc ? "px-[4px] h-[26px] gap-1" : logoPill ? "px-[8px] h-[26px]" : "size-[26px]"}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={logoSrc}
+                  alt={logoLabel ?? ""}
+                  className="w-auto"
+                  style={{ height: logoHeight ?? 16 }}
+                />
+                {logoSecondarySrc && (
+                  <>
+                    <span className="logo-x text-sm leading-none select-none translate-x-[1px]" style={{ color: "var(--portfolio-primary)" }}>
+                      ×
+                    </span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={logoSecondarySrc}
+                      alt={logoSecondaryLabel ?? ""}
+                      className="h-[16px] w-auto translate-y-[1px] mr-[2px]"
+                    />
+                  </>
+                )}
+              </div>
             )}
           </div>
         )}

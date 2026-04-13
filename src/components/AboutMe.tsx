@@ -37,43 +37,90 @@ export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
             I think the best way to do great design is by being obsessive about
             the details, being kind, and being open to ideas from anyone.
           </p>
-          <div className="flex items-baseline gap-3">
-            <p className="text-[var(--portfolio-link)] text-[15px] leading-[1.494] font-semibold max-sm:text-[16px]">
-              Reach Out →{" "}
-              <span className="font-normal">alexgervais.ui@gmail.com</span>
-            </p>
-            <div className="relative self-center translate-y-[2px]">
-              <button
-                onClick={copyEmail}
-                aria-label="Copy email address"
-                className="shrink-0 hover:opacity-70 transition-opacity"
-                style={{ color: "var(--portfolio-primary)" }}
-              >
-                <Image
-                  src={
-                    toastPhase !== "hidden"
-                      ? "/images/icons/check_icon.svg"
-                      : "/images/icons/copy_icon_for_about_section.svg"
-                  }
-                  alt=""
-                  width={16}
-                  height={16}
-                  className="theme-icon"
-                />
-              </button>
-              {toastPhase !== "hidden" && (
-                <div
-                  className="absolute bottom-full left-1/2 bg-black text-white text-base rounded-xl px-4 py-2 whitespace-nowrap pointer-events-none toast-tooltip"
-                  style={{
-                    animation:
-                      toastPhase === "in"
-                        ? "toast-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards"
-                        : "toast-fade 0.25s ease-in forwards",
-                  }}
+          <div className="max-sm:mt-2">
+            {/* Desktop: single inline row */}
+            <div className="hidden sm:flex items-baseline gap-3">
+              <p className="text-[var(--portfolio-link)] text-[15px] leading-[1.494] font-semibold">
+                Reach Out →{" "}
+                <span className="font-normal">alexgervais.ui@gmail.com</span>
+              </p>
+              <div className="relative self-center translate-y-[2px]">
+                <button
+                  onClick={copyEmail}
+                  aria-label="Copy email address"
+                  className="shrink-0 hover:opacity-70 transition-opacity"
+                  style={{ color: "var(--portfolio-primary)" }}
                 >
-                  Email copied
+                  <Image
+                    src={
+                      toastPhase !== "hidden"
+                        ? "/images/icons/check_icon.svg"
+                        : "/images/icons/copy_icon_for_about_section.svg"
+                    }
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="theme-icon"
+                  />
+                </button>
+                {toastPhase !== "hidden" && (
+                  <div
+                    className="absolute bottom-full left-1/2 bg-black text-white text-base rounded-xl px-4 py-2 whitespace-nowrap pointer-events-none toast-tooltip"
+                    style={{
+                      animation:
+                        toastPhase === "in"
+                          ? "toast-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                          : "toast-fade 0.25s ease-in forwards",
+                    }}
+                  >
+                    Email copied
+                  </div>
+                )}
+              </div>
+            </div>
+            {/* Mobile: header with spacing, then email + copy inline */}
+            <div className="sm:hidden">
+              <p className="text-[var(--portfolio-link)] text-[16px] leading-[1.494] font-semibold mb-2">
+                Reach Out
+              </p>
+              <div className="flex items-center gap-2">
+                <span className="text-[var(--portfolio-link)] text-[16px] leading-[1.494]">
+                  alexgervais.ui@gmail.com
+                </span>
+                <div className="relative flex items-center">
+                  <button
+                    onClick={copyEmail}
+                    aria-label="Copy email address"
+                    className="shrink-0 hover:opacity-70 transition-opacity"
+                    style={{ color: "var(--portfolio-primary)" }}
+                  >
+                    <Image
+                      src={
+                        toastPhase !== "hidden"
+                          ? "/images/icons/check_icon.svg"
+                          : "/images/icons/copy_icon_for_about_section.svg"
+                      }
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="theme-icon max-xs:!w-[22px] max-xs:!h-[22px]"
+                    />
+                  </button>
+                  {toastPhase !== "hidden" && (
+                    <div
+                      className="absolute bottom-full left-1/2 bg-black text-white text-base rounded-xl px-4 py-2 whitespace-nowrap pointer-events-none toast-tooltip"
+                      style={{
+                        animation:
+                          toastPhase === "in"
+                            ? "toast-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards"
+                            : "toast-fade 0.25s ease-in forwards",
+                      }}
+                    >
+                      Email copied
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
