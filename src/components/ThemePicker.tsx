@@ -69,8 +69,8 @@ export default function ThemePicker() {
         <div className="relative h-[30px] w-[84px] rounded-full" style={{ backgroundColor: "var(--portfolio-theme-picker-bg)" }}>
           {/* Selection indicator */}
           <div
-            className="absolute top-[2px] size-[26px] rounded-full transition-[left,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-            style={{ left: 3 + activeIndex * 26, borderColor: "var(--portfolio-theme-picker-border)", borderWidth: 1, borderStyle: "solid", backgroundColor: "var(--portfolio-theme-picker-indicator)", boxShadow: active === "dark" ? "0 2px 6px rgba(0,0,0,0.08), 0 0 0 1.5px var(--portfolio-card-border)" : "0 2px 6px rgba(0,0,0,0.08)" }}
+            className="absolute top-[2px] size-[26px] rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.08)] transition-[left,background-color,border-color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+            style={{ left: 3 + activeIndex * 26, borderColor: active === "dark" ? "var(--portfolio-card-border)" : "var(--portfolio-theme-picker-border)", borderWidth: 1, borderStyle: "solid", backgroundColor: active === "dark" ? "var(--portfolio-bg)" : "var(--portfolio-theme-picker-indicator)" }}
           />
           {/* Icons */}
           <div className="absolute top-[7px] left-[8px] flex items-center gap-[10px] z-10">
@@ -97,8 +97,8 @@ export default function ThemePicker() {
         >
           {/* Selection indicator */}
           <div
-            className="absolute left-[3px] size-[36px] rounded-full transition-[top,background-color,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-            style={{ top: 4 + activeIndex * 36, borderColor: "var(--portfolio-theme-picker-border)", borderWidth: 1, borderStyle: "solid", backgroundColor: "var(--portfolio-theme-picker-indicator)", boxShadow: active === "dark" ? "0 2px 6px rgba(0,0,0,0.08), 0 0 0 1.5px var(--portfolio-card-border)" : "0 2px 6px rgba(0,0,0,0.08)" }}
+            className="absolute left-[3px] size-[36px] rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.08)] transition-[top,background-color,border-color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+            style={{ top: 3 + activeIndex * 36, borderColor: active === "dark" ? "var(--portfolio-card-border)" : "var(--portfolio-theme-picker-border)", borderWidth: 1, borderStyle: "solid", backgroundColor: active === "dark" ? "var(--portfolio-bg)" : "var(--portfolio-theme-picker-indicator)" }}
           />
           {/* Icons */}
           <div className="absolute left-[12px] top-[13px] flex flex-col items-center gap-[18px] z-10">
