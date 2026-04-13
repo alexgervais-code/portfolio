@@ -101,7 +101,7 @@ export default function ThemePicker() {
             style={{ top: 3 + activeIndex * 36, borderColor: active === "dark" ? "var(--portfolio-card-border)" : "var(--portfolio-theme-picker-border)", borderWidth: 1, borderStyle: "solid", backgroundColor: active === "dark" ? "var(--portfolio-bg)" : "var(--portfolio-theme-picker-indicator)" }}
           />
           {/* Icons */}
-          <div className="absolute left-[12px] top-[13px] flex flex-col items-center gap-[18px] z-10">
+          <div className="absolute left-[12px] top-[12px] flex flex-col items-center gap-[18px] z-10">
             {themeOrder.map((id) => (
               <button
                 key={id}
