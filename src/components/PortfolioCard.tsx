@@ -90,6 +90,7 @@ export default function PortfolioCard({
     responsiveImageSrc,
     responsiveImageAspectRatio,
     imageAspectRatio,
+    tabletImageAspectRatio,
     href,
   } = project;
 
@@ -107,15 +108,23 @@ export default function PortfolioCard({
   const [hovered, setHovered] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isPhone, setIsPhone] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const [phoneToast, setPhoneToast] = useState<{ phase: "hidden" | "in" | "out"; x: number; y: number }>({ phase: "hidden", x: 0, y: 0 });
   const phoneTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 479px)");
-    const update = () => setIsPhone(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    const mqPhone = window.matchMedia("(max-width: 479px)");
+    const mqTablet = window.matchMedia("(min-width: 640px) and (max-width: 959.9px)");
+    const updatePhone = () => setIsPhone(mqPhone.matches);
+    const updateTablet = () => setIsTablet(mqTablet.matches);
+    updatePhone();
+    updateTablet();
+    mqPhone.addEventListener("change", updatePhone);
+    mqTablet.addEventListener("change", updateTablet);
+    return () => {
+      mqPhone.removeEventListener("change", updatePhone);
+      mqTablet.removeEventListener("change", updateTablet);
+    };
   }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -155,10 +164,12 @@ export default function PortfolioCard({
     imageSrc;
   const activeImageSrc =
     useResponsiveImage && responsiveImageSrc ? responsiveImageSrc : themedImageSrc;
+  const baseAspectRatio =
+    isTablet && tabletImageAspectRatio ? tabletImageAspectRatio : imageAspectRatio;
   const activeAspectRatio =
     useResponsiveImage && responsiveImageAspectRatio
       ? responsiveImageAspectRatio
-      : imageAspectRatio;
+      : baseAspectRatio;
 
   const card = (
     <div

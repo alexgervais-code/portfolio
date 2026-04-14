@@ -231,7 +231,7 @@ export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
             </li>
           </ul>
           {austinTime && (
-            <div className="mt-auto -translate-y-[6px] flex items-center gap-1.5 text-[var(--portfolio-link)] text-xs leading-none max-sm:text-[13px]" style={{ fontFamily: "var(--font-mono)" }}>
+            <div className="mt-auto max-sm:mt-6 -translate-y-[6px] max-sm:translate-y-0 flex items-center gap-1.5 text-[var(--portfolio-link)] text-xs leading-none max-sm:text-[13px]" style={{ fontFamily: "var(--font-mono)" }}>
               <span className="shrink-0 size-[14px] translate-y-[0.5px]" style={{ backgroundColor: "currentColor", mask: "url('/images/icons/clock.svg') no-repeat center / contain", WebkitMask: "url('/images/icons/clock.svg') no-repeat center / contain" }} />
               <span>{austinTime} in Austin</span>
               {austinWeather && (

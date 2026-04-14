@@ -15,6 +15,8 @@ export interface Project {
   responsiveImageAspectRatio?: string;
   /** CSS aspect-ratio value for the image area, e.g. "379/343" */
   imageAspectRatio: string;
+  /** Tablet-specific override for imageAspectRatio */
+  tabletImageAspectRatio?: string;
   /** Theme-specific image variants */
   darkImageSrc?: string;
   lightImageSrc?: string;
@@ -98,7 +100,8 @@ export const col2Projects: Project[] = [
     lightImageSrc: "/images/projects/ontrack_ivf_card_image_light.png",
     logoSrc: "/images/logos/university_of_michigan_logo_for_ontrack_ivf_card.png",
     logoLabel: "University of Michigan",
-    imageAspectRatio: "379/191",
+    imageAspectRatio: "379/195",
+    tabletImageAspectRatio: "379/185",
   },
 ];
 
