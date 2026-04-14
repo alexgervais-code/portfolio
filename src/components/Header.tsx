@@ -113,7 +113,7 @@ export default function Header() {
                   ? "noopener noreferrer"
                   : undefined
               }
-              className="relative size-4 block hover:opacity-70 transition-opacity"
+              className="relative size-4 block hover:opacity-70 hover:scale-125 transition-[opacity,transform] duration-200"
             >
               <Image
                 src={link.icon}
