@@ -1,11 +1,61 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+
+function useAustinTime() {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const update = () => {
+      setTime(
+        new Date().toLocaleTimeString("en-US", {
+          timeZone: "America/Chicago",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
+
+function weatherIcon(code: number): string {
+  if (code === 0) return "/images/icons/sun.svg";
+  if (code <= 3) return "/images/icons/cloud.svg";
+  if (code <= 48) return "/images/icons/cloud-fog.svg";
+  if (code <= 67) return "/images/icons/cloud-rain.svg";
+  if (code <= 77) return "/images/icons/cloud-snow.svg";
+  if (code <= 82) return "/images/icons/cloud-storm.svg";
+  if (code <= 99) return "/images/icons/cloud-bolt.svg";
+  return "/images/icons/sun.svg";
+}
+
+function useAustinWeather() {
+  const [weather, setWeather] = useState<{ temp: number; icon: string } | null>(null);
+  useEffect(() => {
+    fetch(
+      "https://api.open-meteo.com/v1/forecast?latitude=30.2672&longitude=-97.7431&current=temperature_2m,weather_code&temperature_unit=fahrenheit"
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        const temp = Math.round(data.current.temperature_2m);
+        const icon = weatherIcon(data.current.weather_code as number);
+        setWeather({ temp, icon });
+      })
+      .catch(() => {});
+  }, []);
+  return weather;
+}
 
 export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
   const [toastPhase, setToastPhase] = useState<"hidden" | "in" | "out">("hidden");
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const austinTime = useAustinTime();
+  const austinWeather = useAustinWeather();
 
   function copyEmail() {
     navigator.clipboard.writeText("alexgervais.ui@gmail.com").then(() => {
@@ -41,7 +91,7 @@ export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
             {/* Desktop: single inline row */}
             <div className="hidden sm:flex items-baseline gap-3">
               <p className="text-[var(--portfolio-link)] text-[15px] leading-[1.494] font-semibold">
-                Reach Out →{" "}
+                Reach out →{" "}
                 <span className="font-normal">alexgervais.ui@gmail.com</span>
               </p>
               <div className="relative self-center translate-y-[2px]">
@@ -126,7 +176,7 @@ export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
         </div>
 
         {/* Interests */}
-        <div className={mobile ? "" : "pt-[45px]"}>
+        <div className={mobile ? "" : "pt-[45px] flex flex-col"}>
           <h3 className="font-semibold text-[var(--portfolio-link)] text-[15px] leading-[1.494] mb-3 max-sm:text-[16px]">
             Some Things I Love
           </h3>
@@ -180,6 +230,18 @@ export default function AboutMe({ mobile }: { mobile?: boolean } = {}) {
               Gaming 🕹️
             </li>
           </ul>
+          {austinTime && (
+            <div className="mt-auto -translate-y-[6px] flex items-center gap-1.5 text-[var(--portfolio-link)] text-xs leading-none max-sm:text-[13px]" style={{ fontFamily: "var(--font-mono)" }}>
+              <span className="shrink-0 size-[14px] translate-y-[0.5px]" style={{ backgroundColor: "currentColor", mask: "url('/images/icons/clock.svg') no-repeat center / contain", WebkitMask: "url('/images/icons/clock.svg') no-repeat center / contain" }} />
+              <span>{austinTime} in Austin</span>
+              {austinWeather && (
+                <>
+                  <span className="shrink-0 size-[14px] translate-y-[0.5px] ml-1 translate-x-[2px]" style={{ backgroundColor: "currentColor", mask: `url('${austinWeather.icon}') no-repeat center / contain`, WebkitMask: `url('${austinWeather.icon}') no-repeat center / contain` }} />
+                  <span>{austinWeather.temp}°F</span>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

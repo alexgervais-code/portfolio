@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree } from "next/font/google";
+import { Figtree, Space_Mono } from "next/font/google";
 import { Agentation } from "agentation";
 import "./globals.css";
 
@@ -8,6 +8,12 @@ const figtree = Figtree({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   style: ["normal", "italic"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const viewport: Viewport = {
@@ -41,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${figtree.variable} h-full antialiased`}>
+    <html lang="en" className={`${figtree.variable} ${spaceMono.variable} h-full antialiased`}>
       <body className="min-h-full">
         {children}
         {process.env.NODE_ENV === "development" && <Agentation />}

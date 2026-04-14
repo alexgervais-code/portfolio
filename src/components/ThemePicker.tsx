@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 
 type ThemeId = "ocean" | "light" | "dark";
 
@@ -53,6 +53,31 @@ const themeLabels: Record<ThemeId, string> = {
 const themeOrder: ThemeId[] = ["ocean", "light", "dark"];
 
 
+function playClick() {
+  const ctx = new AudioContext();
+  const t = ctx.currentTime;
+  const bufferSize = ctx.sampleRate * 0.02;
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.08));
+  }
+  const noise = ctx.createBufferSource();
+  noise.buffer = buffer;
+  const bandpass = ctx.createBiquadFilter();
+  bandpass.type = "bandpass";
+  bandpass.frequency.value = 3500;
+  bandpass.Q.value = 2.5;
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.12, t);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + 0.015);
+  noise.connect(bandpass);
+  bandpass.connect(gain);
+  gain.connect(ctx.destination);
+  noise.start(t);
+  noise.stop(t + 0.02);
+}
+
 export default function ThemePicker() {
   const [active, setActive] = useState<ThemeId>("ocean");
 
@@ -60,6 +85,7 @@ export default function ThemePicker() {
 
   const switchTheme = useCallback((id: ThemeId) => {
     if (id === active) return;
+    playClick();
     setActive(id);
     document.documentElement.setAttribute("data-theme", id);
   }, [active]);
