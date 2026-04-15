@@ -100,7 +100,7 @@ export default function BuzzFeedHomepagePage() {
 
       {/* Title & description */}
       <div className="mb-[82px] max-sm:mb-[62px]">
-        <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-[282px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
+        <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-none transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
           BuzzFeed Homepage Redesign
         </h1>
         <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
@@ -114,7 +114,7 @@ export default function BuzzFeedHomepagePage() {
           </p>
           <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
             <span>BuzzFeed</span>
-            <span>Aug 2019 - Oct 2019</span>
+            <span>Aug 2024 - Oct 2024</span>
           </div>
         </div>
       </div>
