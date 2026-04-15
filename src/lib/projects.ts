@@ -116,5 +116,6 @@ export const col3Projects: Project[] = [
     logoSrc: "/images/logos/buzzfeed_logo_for_cards.png",
     logoLabel: "BuzzFeed",
     imageAspectRatio: "379/348",
+    href: "/projects/buzzfeed-homepage",
   },
 ];
