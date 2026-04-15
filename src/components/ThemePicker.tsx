@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 type ThemeId = "ocean" | "light" | "dark";
 
@@ -78,8 +78,21 @@ function playClick() {
   noise.stop(t + 0.02);
 }
 
+function getStoredTheme(): ThemeId {
+  if (typeof window === "undefined") return "ocean";
+  const stored = localStorage.getItem("theme");
+  if (stored === "ocean" || stored === "light" || stored === "dark") return stored;
+  return "ocean";
+}
+
 export default function ThemePicker() {
-  const [active, setActive] = useState<ThemeId>("ocean");
+  const [active, setActive] = useState<ThemeId>(getStoredTheme);
+
+  useEffect(() => {
+    const stored = getStoredTheme();
+    setActive(stored);
+    document.documentElement.setAttribute("data-theme", stored);
+  }, []);
 
   const activeIndex = themeOrder.indexOf(active);
 
@@ -87,6 +100,7 @@ export default function ThemePicker() {
     if (id === active) return;
     playClick();
     setActive(id);
+    localStorage.setItem("theme", id);
     document.documentElement.setAttribute("data-theme", id);
   }, [active]);
 
