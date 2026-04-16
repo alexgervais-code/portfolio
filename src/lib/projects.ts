@@ -42,7 +42,7 @@ export const col1Projects: Project[] = [
     id: "agentic-workflow",
     title: "Agentic Workflow Builder",
     description:
-      "Helping 250,000+ businesses grow with custom agents and AI workflows",
+      "Helping 280,000+ businesses grow with custom agents and AI workflows",
     imageSrc: "/images/agentic_workflows_card_image.png",
     logoSrc: "/images/logos/hubspot_logo_for_agentic_workflows_card.png",
     logoLabel: "HubSpot",
@@ -110,7 +110,7 @@ export const col2Projects: Project[] = [
 export const col3Projects: Project[] = [
   {
     id: "buzzfeed-homepage",
-    title: "BuzzFeed Homepage",
+    title: "BuzzFeed Homepage Redesign",
     description:
       "Growing engagement and revenue on buzzfeed.com through a homepage redesign and design language refresh",
     imageSrc: "/images/buzzfeed_homepage_card_image.png",
