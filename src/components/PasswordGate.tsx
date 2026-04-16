@@ -64,7 +64,7 @@ export default function PasswordGate({
             placeholder="Enter password"
             autoFocus
             aria-label="Password"
-            className="w-full h-[44px] rounded-full px-5 text-[14px] leading-[1.35] tracking-[-0.14px] outline-none transition-colors duration-300 focus:shadow-[0_0_0_3px_var(--portfolio-card-border)]"
+            className="w-full h-[44px] rounded-[12px] px-5 text-[16px] leading-[1.35] tracking-[-0.16px] outline-none transition-colors duration-300 focus:shadow-[0_0_0_3px_var(--portfolio-card-border)]"
             style={{
               backgroundColor: "var(--portfolio-card-bg)",
               border: `1px solid ${error ? "#e06666" : "var(--portfolio-card-border)"}`,
@@ -75,7 +75,7 @@ export default function PasswordGate({
         <button
           type="submit"
           disabled={input.trim().length === 0}
-          className="h-[44px] rounded-full px-6 text-[14px] leading-[1.35] tracking-[-0.14px] font-medium cursor-pointer transition-[opacity,transform] duration-200 hover:opacity-85 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:opacity-40"
+          className="w-full h-[44px] rounded-[12px] px-6 text-[14px] leading-[1.35] tracking-[-0.14px] font-medium cursor-pointer transition-[opacity,transform] duration-200 hover:opacity-85 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:opacity-40"
           style={{
             backgroundColor: "var(--portfolio-primary)",
             color: "var(--portfolio-bg)",

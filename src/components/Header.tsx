@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import ThemePicker from "./ThemePicker";
 
 const socialLinks = [
@@ -32,6 +32,15 @@ export default function Header() {
   const avatarRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [canHover, setCanHover] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setCanHover(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!avatarRef.current) return;
@@ -48,14 +57,22 @@ export default function Header() {
   }, []);
 
   const handleMouseEnter = useCallback((e: React.MouseEvent) => {
+    if (!canHover) return;
     setIsHovering(true);
     handleMouseMove(e);
-  }, [handleMouseMove]);
+  }, [canHover, handleMouseMove]);
 
   const handleMouseLeave = useCallback(() => {
+    if (!canHover) return;
     setIsHovering(false);
     setOffset({ x: 0, y: 0 });
-  }, []);
+  }, [canHover]);
+
+  const handleTap = useCallback(() => {
+    if (canHover) return;
+    setOffset({ x: 0, y: 0 });
+    setIsHovering((prev) => !prev);
+  }, [canHover]);
 
   return (
     <header className="pt-8">
@@ -67,6 +84,7 @@ export default function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onClick={handleTap}
             className="avatar-border relative size-[34px] rounded-full overflow-hidden shrink-0 ease-out cursor-pointer"
             style={{
               transform: isHovering
