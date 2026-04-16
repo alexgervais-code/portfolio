@@ -45,7 +45,7 @@ export default function PasswordGate({
   }
 
   return (
-    <div className="min-h-[calc(100vh-180px)] flex flex-col items-center justify-center px-6">
+    <div className="min-h-[calc(100dvh-126px)] max-sm:min-h-[calc(100dvh-116px)] flex flex-col items-center justify-center px-6">
       <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 w-full max-w-[360px]">
         <p
           className="text-[16px] leading-[1.35] tracking-[-0.16px] text-center transition-colors duration-300"
@@ -72,6 +72,17 @@ export default function PasswordGate({
             }}
           />
         </div>
+        <button
+          type="submit"
+          disabled={input.trim().length === 0}
+          className="h-[44px] rounded-full px-6 text-[14px] leading-[1.35] tracking-[-0.14px] font-medium cursor-pointer transition-[opacity,transform] duration-200 hover:opacity-85 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:opacity-40"
+          style={{
+            backgroundColor: "var(--portfolio-primary)",
+            color: "var(--portfolio-bg)",
+          }}
+        >
+          Unlock
+        </button>
         {error && (
           <p
             className="text-[13px] leading-[1.35] tracking-[-0.13px] transition-colors duration-300"
