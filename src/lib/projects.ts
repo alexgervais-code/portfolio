@@ -49,6 +49,7 @@ export const col1Projects: Project[] = [
     logoHeight: 12,
     logoPill: true,
     imageAspectRatio: "379/343",
+    href: "/projects/agentic-workflow",
   },
   {
     id: "prime-day",
