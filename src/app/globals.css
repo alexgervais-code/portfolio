@@ -199,6 +199,11 @@ html[data-theme="dark"] .toast-tooltip {
   transition: filter 0.3s ease;
 }
 
+html {
+  background-color: var(--portfolio-bg);
+  transition: background-color 0.3s ease;
+}
+
 body {
   background-color: var(--portfolio-bg);
   color: var(--portfolio-primary);
