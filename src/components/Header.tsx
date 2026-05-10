@@ -83,7 +83,7 @@ export default function Header() {
       <div className="absolute inset-0 pointer-events-none backdrop-blur-[2px]" style={{ mask: "linear-gradient(to bottom, transparent 20%, black 50%, transparent 100%)", WebkitMask: "linear-gradient(to bottom, transparent 20%, black 50%, transparent 100%)" }} />
       <div className="absolute inset-0 pointer-events-none backdrop-blur-[1px]" style={{ mask: "linear-gradient(to bottom, transparent 40%, black 70%, transparent 100%)", WebkitMask: "linear-gradient(to bottom, transparent 40%, black 70%, transparent 100%)" }} />
       {/* Top bar: avatar + name | social icons */}
-      <div className="relative z-10 flex items-center justify-between" style={{ paddingTop: "calc(env(safe-area-inset-top, 0px) + 2rem)" }}>
+      <div className="relative z-10 pt-8 flex items-center justify-between">
         <div className="flex items-center gap-[10px]">
           <div
             ref={avatarRef}
