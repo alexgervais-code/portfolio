@@ -10,6 +10,8 @@ export interface Project {
   logoSecondarySrc?: string;
   logoSecondaryLabel?: string;
   logoHeight?: number;
+  logoPrefixHeight?: number;
+  logoPrefixPill?: boolean;
   logoPill?: boolean;
   responsiveImageSrc?: string;
   responsiveImageAspectRatio?: string;
@@ -24,17 +26,18 @@ export interface Project {
   href?: string;
 }
 
-// The BuzzFeed AI Games card lives in the header (col 3, top)
 export const headerCard: Project = {
-  id: "buzzfeed-ai-games",
-  title: "BuzzFeed's AI Games And Experiences",
-  description: "LLM-powered experiences for buzzfeed.com",
-  imageSrc: "/images/projects/AI_games_card_image.png",
-  darkImageSrc: "/images/projects/AI_games_card_dark.png",
-  lightImageSrc: "/images/projects/AI_games_card_light.png",
+  id: "buzzfeed-homepage",
+  title: "BuzzFeed Homepage Redesign",
+  description:
+    "Growing engagement and revenue on buzzfeed.com through a homepage redesign and design language refresh",
+  imageSrc: "/images/buzzfeed_homepage_card_image.png",
   logoSrc: "/images/logos/buzzfeed_logo_for_cards.png",
   logoLabel: "BuzzFeed",
+  logoHeight: 9,
+  logoPill: true,
   imageAspectRatio: "379/348",
+  href: "/projects/buzzfeed-homepage",
 };
 
 export const col1Projects: Project[] = [
@@ -46,7 +49,7 @@ export const col1Projects: Project[] = [
     imageSrc: "/images/agentic_workflows_card_image.png",
     logoSrc: "/images/logos/hubspot_logo_for_agentic_workflows_card.png",
     logoLabel: "HubSpot",
-    logoHeight: 12,
+    logoHeight: 13,
     logoPill: true,
     imageAspectRatio: "379/343",
     href: "/projects/agentic-workflow",
@@ -59,9 +62,8 @@ export const col1Projects: Project[] = [
     imageSrc: "/images/projects/prime_day_ai_shopping_guide_card_image.png",
     logoSrc: "/images/logos/buzzfeed_logo_for_cards.png",
     logoLabel: "BuzzFeed",
-    logoSecondarySrc:
-      "/images/logos/amazing_logo_for_prime_day_shopping_guide_card.png",
-    logoSecondaryLabel: "Amazon",
+    logoHeight: 9,
+    logoPill: true,
     imageAspectRatio: "379/202",
   },
   {
@@ -83,11 +85,11 @@ export const col2Projects: Project[] = [
     description:
       "Maximizing social platform engagement with automation and machine learning",
     imageSrc: "/images/projects/AI_social_publishing_tools_card_image.png",
-    logoPrefixSrc: "/images/logos/buzzfeed_logo_for_cards.png",
-    logoPrefixLabel: "BuzzFeed",
-    logoSrc: "/images/logos/huffpost_logo_for_ai_social_posts_card.png",
-    logoLabel: "HuffPost",
-    logoPill: true,
+    logoSrc: "/images/logos/buzzfeed_logo_for_cards.png",
+    logoLabel: "BuzzFeed",
+    logoHeight: 9,
+    logoSecondarySrc: "/images/logos/huffpost_logo_for_ai_social_posts_card.png",
+    logoSecondaryLabel: "HuffPost",
     imageAspectRatio: "379/322",
     href: "/projects/ai-social",
   },
@@ -99,24 +101,24 @@ export const col2Projects: Project[] = [
     imageSrc: "/images/projects/ontrack_ivf_card_image.png",
     darkImageSrc: "/images/projects/ontrack_ivf_card_image_dark.png",
     lightImageSrc: "/images/projects/ontrack_ivf_card_image_light.png",
-    logoSrc: "/images/logos/university_of_michigan_logo_for_ontrack_ivf_card.png",
     logoLabel: "University of Michigan",
     imageAspectRatio: "379/195",
     tabletImageAspectRatio: "379/185",
   },
 ];
 
-// Col 3 in the bento grid (BuzzFeed AI Games is in the header)
 export const col3Projects: Project[] = [
   {
-    id: "buzzfeed-homepage",
-    title: "BuzzFeed Homepage Redesign",
-    description:
-      "Growing engagement and revenue on buzzfeed.com through a homepage redesign and design language refresh",
-    imageSrc: "/images/buzzfeed_homepage_card_image.png",
+    id: "buzzfeed-ai-games",
+    title: "BuzzFeed's AI Games And Experiences",
+    description: "LLM-powered experiences for buzzfeed.com",
+    imageSrc: "/images/projects/AI_games_card_image.png",
+    darkImageSrc: "/images/projects/AI_games_card_dark.png",
+    lightImageSrc: "/images/projects/AI_games_card_light.png",
     logoSrc: "/images/logos/buzzfeed_logo_for_cards.png",
     logoLabel: "BuzzFeed",
+    logoHeight: 9,
+    logoPill: true,
     imageAspectRatio: "379/348",
-    href: "/projects/buzzfeed-homepage",
   },
 ];

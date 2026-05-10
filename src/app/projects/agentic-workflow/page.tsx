@@ -4,6 +4,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import PasswordGate from "@/components/PasswordGate";
 import ThemePicker from "@/components/ThemePicker";
+import BlurIn from "@/components/BlurIn";
 
 export const metadata: Metadata = {
   title: "Agentic Workflows — Alex Gervais",
@@ -102,29 +103,34 @@ export default function AgenticWorkflowPage() {
       <PasswordGate password="blueberry" storageKey="unlock:agentic-workflow">
       {/* Title & description */}
       <div className="mb-[82px] max-sm:mb-[62px]">
-        <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[429px] max-sm:max-w-none transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
-          Agentic Workflows
-        </h1>
-        <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
-          <p className="text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
-            Workflows is a core automation tool used by a significant portion of
-            HubSpot&apos;s 280,000+ customers. It&apos;s the kind of tool businesses
-            build their daily operations on top of. It had grown powerful over the
-            years, but that power came with complexity: longtime users relied on it,
-            while newer users struggled to get started, and core functionality got
-            buried under years of additions. I worked on the redesign to modernize
-            the experience and expand what the tool could do, while carefully mapping
-            migration paths so legacy users wouldn&apos;t lose the workflows they&apos;d
-            come to rely on.
-          </p>
-          <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
-            <span>HubSpot</span>
-            <span>Nov 2025 - Present</span>
+        <BlurIn delay={100} duration={1.5}>
+          <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[429px] max-sm:max-w-none transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
+            Agentic Workflows
+          </h1>
+        </BlurIn>
+        <BlurIn delay={300} duration={1.6}>
+          <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
+            <p className="text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
+              Workflows is a core automation tool used by a significant portion of
+              HubSpot&apos;s 280,000+ customers. It&apos;s the kind of tool businesses
+              build their daily operations on top of. It had grown powerful over the
+              years, but that power came with complexity: longtime users relied on it,
+              while newer users struggled to get started, and core functionality got
+              buried under years of additions. I worked on the redesign to modernize
+              the experience and expand what the tool could do, while carefully mapping
+              migration paths so legacy users wouldn&apos;t lose the workflows they&apos;d
+              come to rely on.
+            </p>
+            <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
+              <span>HubSpot</span>
+              <span>Nov 2025 - Present</span>
+            </div>
           </div>
-        </div>
+        </BlurIn>
       </div>
 
       {/* Desktop layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-desktop flex-col gap-8">
         {/* Row 1: Full-width hero */}
         <CaseStudyCard>
@@ -204,8 +210,10 @@ export default function AgenticWorkflowPage() {
           </CaseStudyCard>
         </div>
       </div>
+      </BlurIn>
 
       {/* Tablet layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-tablet flex-col gap-8">
         {/* Row 1: Full-width hero */}
         <CaseStudyCard>
@@ -285,8 +293,10 @@ export default function AgenticWorkflowPage() {
           </div>
         </CaseStudyCard>
       </div>
+      </BlurIn>
 
       {/* Mobile layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-mobile flex-col gap-6">
         <CaseStudyCard>
           <div className="relative w-full" style={{ aspectRatio: "346/208" }}>
@@ -360,6 +370,7 @@ export default function AgenticWorkflowPage() {
           </div>
         </CaseStudyCard>
       </div>
+      </BlurIn>
 
       <Footer />
       </PasswordGate>

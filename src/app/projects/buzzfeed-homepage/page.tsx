@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import ThemePicker from "@/components/ThemePicker";
+import BlurIn from "@/components/BlurIn";
 
 export const metadata: Metadata = {
   title: "BuzzFeed Homepage Redesign — Alex Gervais",
@@ -100,26 +101,31 @@ export default function BuzzFeedHomepagePage() {
 
       {/* Title & description */}
       <div className="mb-[82px] max-sm:mb-[62px]">
-        <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-none transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
-          BuzzFeed Homepage Redesign
-        </h1>
-        <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
-          <p className="text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
-            BuzzFeed&apos;s homepage was the site&apos;s biggest driver of engagement
-            and ad revenue, but it hadn&apos;t evolved to match how people consumed
-            content. I redesigned the homepage to modernize the content hierarchy,
-            introduce interactive elements like inline reactions and embedded social
-            content, and give the editorial team flexible new curation tools. The
-            redesign increased both engagement and ad revenue across the site.
-          </p>
-          <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
-            <span>BuzzFeed</span>
-            <span>Aug 2024 - Oct 2024</span>
+        <BlurIn delay={100} duration={1.5}>
+          <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-none transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
+            BuzzFeed Homepage Redesign
+          </h1>
+        </BlurIn>
+        <BlurIn delay={300} duration={1.6}>
+          <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
+            <p className="text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
+              BuzzFeed&apos;s homepage was the site&apos;s biggest driver of engagement
+              and ad revenue, but it hadn&apos;t evolved to match how people consumed
+              content. I redesigned the homepage to modernize the content hierarchy,
+              introduce interactive elements like inline reactions and embedded social
+              content, and give the editorial team flexible new curation tools. The
+              redesign increased both engagement and ad revenue across the site.
+            </p>
+            <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
+              <span>BuzzFeed</span>
+              <span>Aug 2024 - Oct 2024</span>
+            </div>
           </div>
-        </div>
+        </BlurIn>
       </div>
 
       {/* Desktop layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-desktop flex-col gap-8">
         {/* Row 1: Full-width hero */}
         <CaseStudyCard>
@@ -226,8 +232,10 @@ export default function BuzzFeedHomepagePage() {
           </CaseStudyCard>
         </div>
       </div>
+      </BlurIn>
 
       {/* Tablet layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-tablet flex-col gap-8">
         {/* Row 1: Full-width hero */}
         <CaseStudyCard>
@@ -333,8 +341,10 @@ export default function BuzzFeedHomepagePage() {
           </CaseStudyCard>
         </div>
       </div>
+      </BlurIn>
 
       {/* Mobile layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-mobile flex-col gap-6">
         <CaseStudyCard>
           <div className="relative w-full" style={{ aspectRatio: "346/202" }}>
@@ -432,6 +442,7 @@ export default function BuzzFeedHomepagePage() {
           </div>
         </CaseStudyCard>
       </div>
+      </BlurIn>
 
       <Footer />
     </main>

@@ -75,9 +75,15 @@ export default function Header() {
   }, [canHover]);
 
   return (
-    <header className="pt-8">
+    <header className="sticky top-0 z-50 pb-[60px]">
+      {/* Background gradient spanning full header height */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, var(--portfolio-bg) 0%, var(--portfolio-bg) 45%, transparent 100%)" }} />
+      {/* Progressive blur layers spanning full header height */}
+      <div className="absolute inset-0 pointer-events-none backdrop-blur-[4px]" style={{ mask: "linear-gradient(to bottom, transparent 0%, black 30%, transparent 100%)", WebkitMask: "linear-gradient(to bottom, transparent 0%, black 30%, transparent 100%)" }} />
+      <div className="absolute inset-0 pointer-events-none backdrop-blur-[2px]" style={{ mask: "linear-gradient(to bottom, transparent 20%, black 50%, transparent 100%)", WebkitMask: "linear-gradient(to bottom, transparent 20%, black 50%, transparent 100%)" }} />
+      <div className="absolute inset-0 pointer-events-none backdrop-blur-[1px]" style={{ mask: "linear-gradient(to bottom, transparent 40%, black 70%, transparent 100%)", WebkitMask: "linear-gradient(to bottom, transparent 40%, black 70%, transparent 100%)" }} />
       {/* Top bar: avatar + name | social icons */}
-      <div className="flex items-center justify-between mb-[70px]">
+      <div className="relative z-10 pt-8 flex items-center justify-between">
         <div className="flex items-center gap-[10px]">
           <div
             ref={avatarRef}
@@ -144,7 +150,6 @@ export default function Header() {
         </nav>
         </div>
       </div>
-
     </header>
   );
 }

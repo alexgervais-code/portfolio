@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import ThemePicker from "@/components/ThemePicker";
+import BlurIn from "@/components/BlurIn";
 
 export const metadata: Metadata = {
   title: "AI Social Publishing Tools — Alex Gervais",
@@ -100,26 +101,31 @@ export default function AISocialPage() {
 
       {/* Title & description */}
       <div className="mb-[82px] max-sm:mb-[62px]">
-        <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-[282px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
-          AI Social Publishing Tools
-        </h1>
-        <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
-          <p className="text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
-            BuzzFeed relies on a suite of powerful social publishing tools powered
-            by machine learning that help automate the distribution of over 1200+
-            new pieces of content per day. I led the design these of these tools,
-            and spearheaded an effort to make our automation system easier to
-            understand and configure. I redesigned our core tool and created a new
-            tool for driving Instagram and TikTok referrals.
-          </p>
-          <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
-            <span>BuzzFeed</span>
-            <span>2019 - 2022</span>
+        <BlurIn delay={100} duration={1.5}>
+          <h1 className="font-semibold text-[31px] leading-[1.2] tracking-[-0.02em] max-w-[359px] max-sm:max-w-[282px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
+            AI Social Publishing Tools
+          </h1>
+        </BlurIn>
+        <BlurIn delay={300} duration={1.6}>
+          <div className="mt-[44px] flex max-sm:flex-col max-sm:gap-4 gap-[100px]">
+            <p className="text-[16px] leading-[1.35] tracking-[-0.16px] max-w-[481px] transition-colors duration-300" style={{ color: "var(--portfolio-primary)" }}>
+              BuzzFeed relies on a suite of powerful social publishing tools powered
+              by machine learning that help automate the distribution of over 1200+
+              new pieces of content per day. I led the design these of these tools,
+              and spearheaded an effort to make our automation system easier to
+              understand and configure. I redesigned our core tool and created a new
+              tool for driving Instagram and TikTok referrals.
+            </p>
+            <div className="flex max-sm:flex-row max-sm:gap-4 sm:flex-col sm:gap-2 text-[14px] leading-[1.35] tracking-[-0.14px] transition-colors duration-300" style={{ color: "var(--portfolio-accent)" }}>
+              <span>BuzzFeed</span>
+              <span>2019 - 2022</span>
+            </div>
           </div>
-        </div>
+        </BlurIn>
       </div>
 
       {/* Desktop layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-desktop flex-col gap-8">
         {/* Row 1: Full-width hero */}
         <CaseStudyCard>
@@ -247,8 +253,10 @@ export default function AISocialPage() {
           </CaseStudyCard>
         </div>
       </div>
+      </BlurIn>
 
       {/* Tablet layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-tablet flex-col gap-8">
         {/* Hero */}
         <CaseStudyCard className="w-full">
@@ -373,8 +381,10 @@ export default function AISocialPage() {
           </CaseStudyCard>
         </div>
       </div>
+      </BlurIn>
 
       {/* Mobile layout */}
+      <BlurIn delay={1000} duration={1.6} triggerOnLoad>
       <div className="case-layout-mobile flex-col gap-6">
         <CaseStudyCard>
           <div className="relative w-full" style={{ aspectRatio: "346/223" }}>
@@ -472,6 +482,7 @@ export default function AISocialPage() {
           </div>
         </CaseStudyCard>
       </div>
+      </BlurIn>
 
       <Footer />
     </main>
